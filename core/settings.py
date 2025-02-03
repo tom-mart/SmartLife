@@ -16,6 +16,10 @@ from .local_settings import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGIN_URL = 'base:login'
+LOGOUT_REDIRECT_URL = 'base:login'
+LOGIN_REDIRECT_URL = 'base:index'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -29,6 +33,7 @@ INSTALLED_APPS = [
     'office.apps.OfficeConfig',
     'kitchen.apps.KitchenConfig',
     'household.apps.HouseholdConfig',
+    'base.apps.BaseConfig',
 
     'ninja_extra',
     'ninja_jwt',
@@ -49,7 +54,13 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'base/templates',
+            BASE_DIR / 'garage/templates',
+            BASE_DIR / 'kitchen/templates',
+            BASE_DIR / 'office/templates',
+            BASE_DIR / 'household/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

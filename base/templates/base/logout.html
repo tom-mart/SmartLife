@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Logged Out of SmartLife{% endblock %}
+
+{% block content %}
+<div class="logout-container">
+    <h2>You have been logged out</h2>
+    <p>Thank you for using SmartLife. You have been successfully logged out.</p>
+    <a href="{% url 'login' %}" class="login-link">Log in again</a>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .logout-container {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .login-link {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    .login-link:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}
