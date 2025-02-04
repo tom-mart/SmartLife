@@ -18,104 +18,272 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #f5f5f5;
         }
 
         /* Header styles */
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem;
-            position: relative;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
         }
+
         .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Navigation styles */
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
             background: none;
             border: none;
-            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
         }
+
         nav {
             display: flex;
+            align-items: center;
         }
+
         nav ul {
-            list-style-type: none;
+            list-style: none;
             display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
         }
-        nav ul li {
-            margin-left: 1rem;
-        }
-        nav ul li a {
-            color: white;
+
+        nav a {
+            color: #333;
             text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-highlight {
+            background-color: #4CAF50;
+            color: white !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-highlight:hover {
+            background-color: #45a049 !important;
         }
 
         /* Main content styles */
         main {
             flex: 1;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
             width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* Footer styles */
         footer {
             background-color: #333;
-            color: white;
-            text-align: center;
+            color: #fff;
             padding: 1rem;
+            text-align: center;
             margin-top: auto;
         }
 
-        /* Responsive design */
+        /* Mobile styles */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
+                position: relative;
+                z-index: 10000;
             }
+
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                width: 100%;
+                position: fixed;
+                top: var(--header-height, 60px);
                 left: 0;
                 right: 0;
-                background-color: #4CAF50;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 9999;
             }
+
             nav.active {
                 display: block;
             }
+
             nav ul {
                 flex-direction: column;
+                gap: 0;
             }
-            nav ul li {
-                margin: 0;
-                text-align: center;
+
+            nav li {
+                width: 100%;
             }
-            nav ul li a {
+
+            nav a {
                 display: block;
-                padding: 0.5rem;
+                padding: 1rem;
+                border-radius: 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            nav a:hover {
+                background-color: #f8f9fa;
+            }
+        }
+
+        /* Messages styles */
+        .messages {
+            list-style: none;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        .messages li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .messages .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .messages .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .messages .info {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+
+        .messages .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .logout-form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            color: #333;
+            font-size: inherit;
+            font-family: inherit;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .logout-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .logout-button {
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+            }
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            margin-right: 1rem;
+        }
+
+        .back-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .back-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                margin-right: 0.5rem;
             }
         }
     </style>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>SmartLife</h1>
+            <div style="display: flex; align-items: center;">
+                {% if request.path != '/' and request.path != '/login/' and request.path != '/logout/' %}
+                <button onclick="window.history.back()" class="back-button" aria-label="Go back">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                {% endif %}
+                <a href="{% url 'base:index' %}" class="logo">SmartLife</a>
+            </div>
             <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <nav>
                 <ul>
-                    <!-- ... other nav items ... -->
+                    <li><a href="{% url 'base:index' %}">Home</a></li>
                     {% if user.is_authenticated %}
+                        {% if not user.household_member %}
+                            <li><a href="{% url 'household:index' %}" class="nav-highlight">Join Household</a></li>
+                        {% else %}
+                            <li><a href="{% url 'kitchen:index' %}">Kitchen</a></li>
+                            <li><a href="{% url 'garage:index' %}">Garage</a></li>
+                            <li><a href="{% url 'office:index' %}">Office</a></li>
+                            <li><a href="{% url 'household:index' %}" class="nav-highlight">Household</a></li>
+                        {% endif %}
                         <li>
-                            <form method="post" action="{% url 'base:logout' %}">
+                            <form method="post" action="{% url 'base:logout' %}" class="logout-form">
                                 {% csrf_token %}
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="logout-button">Logout</button>
                             </form>
                         </li>
                     {% else %}
@@ -127,14 +295,19 @@
     </header>
 
     <main>
-        {% block content %}
-        <h2>Welcome to SmartLife</h2>
-        <p>This is where your main content will go. You can replace this with specific content for each page.</p>
-        {% endblock %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2025 SmartLife. All rights reserved.</p>
+        <p>&copy; {% now "Y" %} SmartLife. All rights reserved.</p>
     </footer>
 
     <script>
@@ -144,6 +317,26 @@
 
             menuToggle.addEventListener('click', function() {
                 nav.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', 
+                    nav.classList.contains('active') ? 'true' : 'false');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = nav.contains(event.target) || 
+                                    menuToggle.contains(event.target);
+                if (!isClickInside && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Close menu when window is resized above mobile breakpoint
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
             });
         });
     </script>
