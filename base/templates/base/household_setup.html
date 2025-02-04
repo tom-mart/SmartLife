@@ -1,0 +1,132 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Set Up Your Household - SmartLife{% endblock %}
+
+{% block content %}
+<div class="household-setup">
+    <header class="setup-header">
+        <h1>Welcome to SmartLife, {{ user.username }}!</h1>
+        <p class="setup-intro">To get started, you'll need to either create a new household or join an existing one.</p>
+    </header>
+
+    <div class="setup-options">
+        <div class="setup-card">
+            <h2>Create New Household</h2>
+            <p>Start a new household and invite family members to join.</p>
+            <form method="post" action="{% url 'household:create' %}" class="setup-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="household_name">Household Name</label>
+                    <input type="text" id="household_name" name="name" required 
+                           placeholder="Enter household name">
+                </div>
+                <button type="submit" class="btn-primary">Create Household</button>
+            </form>
+        </div>
+
+        <div class="setup-card">
+            <h2>Join Existing Household</h2>
+            <p>Join your family's household using their join code.</p>
+            <form method="post" action="{% url 'household:join' %}" class="setup-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="join_code">Join Code</label>
+                    <input type="text" id="join_code" name="join_code" required 
+                           placeholder="Enter join code">
+                </div>
+                <button type="submit" class="btn-primary">Join Household</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .household-setup {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .setup-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .setup-intro {
+        color: #666;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+
+    .setup-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .setup-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .setup-card h2 {
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .setup-card p {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .setup-form {
+        margin-top: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        .setup-options {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
